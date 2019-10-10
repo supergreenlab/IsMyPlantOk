@@ -22,6 +22,12 @@ app.use(fileUpload({
 }))
 
 app.post('/', async (req, res) => {
+  console.log(req)
+  if (!req.files || !req.body) {
+    res.writeHead(404, {'Content-Type': 'text'})
+    res.end('NOK')
+    return
+  }
   let { pic } = req.files
   if (!pic) {
     res.writeHead(404, {'Content-Type': 'text'})
